@@ -1,43 +1,54 @@
-# Token Monitor — 배포 안내 초안
+# Token Monitor AIoTech
 
-상태: DRAFT / 공개 설치본 제공 전. 이 저장소는 배포 안내와 진행 기록을 제공하며, 개발 소스나 설치 파일이 아닙니다.
+**English** · [한국어](README.ko.md)
 
-개인 Mac에서 AI 도구 사용량과 제공자 한도를 확인하는 앱을 준비하고 있습니다. 범용 앱, 독립 팀 서버, 선택적 조직 전용 연결은 구분해 제공하는 방향입니다.
+A Mac menu-bar app for checking AI-tool usage, estimated costs, and provider limits, based on [Javis603/token-monitor](https://github.com/Javis603/token-monitor).
 
-## 최신 유지보수 상태 — 2026-09-23
+**Status: local development and validation. No public installer is available yet.** This repository contains release information and progress notes—not the development source or an app download.
 
-- 로컬 계산 경로의 중복 복사를 줄이는 유지보수를 진행했습니다. 수집 주기와 한도 갱신·경고 정책은 유지합니다.
-- 앞선 일부 계산 최적화는 로컬 적용됐지만, 이후 보관 세션 복사 최적화 후보는 소스 검증까지만 완료했고 아직 설치하지 않았습니다.
-- 후속 후보의 관련 테스트 147개와 13개 동등성 재생 사례를 통과했습니다. 모든 입력에서 빠르다는 뜻은 아니며 첫 계산·전체 변경 조건의 한계도 남아 있습니다.
-- 개인 기록 대신 가상 100세션·9,000메시지로 수집기 측정 18건을 완료했습니다. 기간별 토큰 합계와 생성 세션 삭제 후 감소를 확인했습니다.
-- 실제 앱의 CPU 고부하 해결과 Energy Impact 감소는 아직 입증하지 못했습니다. 다음 후보는 한 번 읽은 동일 데이터에서 세 기간을 각각 계산하는 분리 실험이며, 구현·앱 적용 전입니다.
-- 이번 공개는 문서 갱신입니다. 개발 소스의 원격 백업이나 새 앱 릴리스가 아니며, 설치 파일·배포 태그·Homebrew 명령은 제공하지 않습니다.
+## The experience
 
-## 이전 유지보수 상태 — 2026-09-21
+Open a compact usage summary from the menu-bar icon, expand into details or the usage dashboard, and return to the summary. The work includes tool/model comparisons, trends, search and sorting, resizable views, and currency-display choices. Source tests and synthetic UI checks do not guarantee every provider connection or every installed-app flow.
 
-- 계산 중 중복 정규화를 줄이고, 표시할 곳이 없는 카운트다운 타이머의 불필요한 실행을 억제했습니다. 표시 중인 메뉴바 시계 갱신은 유지합니다.
-- 수집 주기와 한도 갱신·경고 정책, 인증·사용자 설정은 이번 최적화에서 변경하지 않았습니다.
-- 관련 회귀 검사 438개 통과 후 로컬 Mac에 백업·교체·재실행했습니다. 메뉴바의 상세↔요약 전환과 숫자 갱신은 사용자 확인을 받았습니다.
-- 본체 CPU 고부하는 남아 있습니다. 실제 Energy Impact·전력 절감률은 미확정이며, 전력 문제 전체가 해결됐다고 판단하지 않습니다.
-- 로컬 적용은 공개 배포 승인이 아닙니다. 공개 설치 파일·배포 태그·Homebrew 설치는 아직 제공하지 않습니다.
+## What is ready—and what is not
 
-## 이전에 확인한 내용
+| Area | Current evidence |
+| --- | --- |
+| Local Mac app | Earlier maintenance was packaged, backed up and applied locally. Summary/detail navigation and changing values were user-confirmed. This is not a public release. |
+| Later calculation candidate | Source validation completed: 147 related tests and 13 equivalence replay cases passed. This later candidate is not installed. |
+| Collector baseline | 18 isolated queries over 100 synthetic sessions / 9,000 messages checked period totals and deletion behavior. This is not an optimized before/after comparison. |
+| CPU and power | High CPU remains unresolved. Synthetic results vary by workload; installed-app CPU and Energy Impact reductions are not established. |
+| Installation | Public DMG downloads and Homebrew installation are not available. Signing, notarization and clean-machine installation remain release gates. |
 
-- 대시보드의 도구·모델 비교, 동일 항목 재클릭 시 전체 복귀.
-- 비교 목록 검색과 지표별 정렬, 선택 항목 필터.
-- 기록 누락·미분류·합계 확인 상태를 구분하는 안내.
-- 도구와 검토된 에이전트를 구분하고, 수치가 없는 항목은 확인 상태로 표시.
-- 위 변경의 소스 테스트와 합성 데이터 화면 검증. 배포용 설치본 검증과는 다릅니다.
+Engineering evidence above is from September 23, 2026 and earlier. This September 24 documentation update does not represent a new app build or new performance measurements.
 
-## 설치
+## Reading the numbers correctly
 
-현재 공개 다운로드와 Homebrew 설치 명령은 제공하지 않습니다. 향후 두 경로가 동일한 검증 버전의 앱을 설치하도록 준비합니다.
+- Provider limits and locally observed token usage are different metrics.
+- Agent/tool and model views can describe the same observations. Do not add these views together as independent usage.
+- Verify provider/agent attribution and deduplication before presenting their records as a combined total.
+- Missing, stale, partial and unavailable data are not zero usage. A minimum remaining percentage needs its provider and time window.
+- Estimated costs are not invoices. Check the currency, exchange-rate basis, period and coverage.
+- Preserve collection and limit-alert timing while optimizing calculation work. Lower synthetic CPU time alone is not proof of lower app power usage.
 
-- 일반 사용자: 서명·공증된 DMG 다운로드.
-- 터미널 사용자: 자체 Homebrew Cask로 완성된 앱 설치.
+## Project direction
 
-[설치 준비 상태](INSTALL.md) · [변경 내역](CHANGELOG.md) · [검증 및 집계 해석](VERIFICATION.md) · [오픈소스 고지](THIRD_PARTY_NOTICES.md)
+The intended structure separates the personal Mac app, an independent small-team server, and optional AIoTech-specific integrations. The privacy requirement is to keep prompts, responses, credentials and original paths on personal devices. This describes the design boundary, not completed validation of every team-server or integration feature. Monitoring and aggregation are designed without LLM calls.
 
-배포 안내 저장소: [BOB-KYO/AIoTech-token-monitor-releases](https://github.com/BOB-KYO/AIoTech-token-monitor-releases). 개발 소스와 비공개 작업 기록은 이 저장소에 포함하지 않습니다. 단, 향후 Electron 앱에 포함되는 코드를 추출할 수 없다는 보장은 아닙니다.
+## Downloads and source
 
-원본 프로젝트: [Javis603/token-monitor](https://github.com/Javis603/token-monitor). 공개용 제품명과 최종 지원 플랫폼 범위는 확정 전입니다.
+There is no supported public installation command yet. The planned distribution paths are a signed/notarized Mac app download and a Homebrew Cask installing the same verified app. Do not treat a GitHub source archive as an installer.
+
+Development-source backups are kept separate from this public repository. Private repository access does not make code embedded in a future Electron app impossible to extract. Upstream notices are preserved; final product distribution terms are still being reviewed.
+
+## Detailed records
+
+The detailed records below are currently in Korean; this page and the linked Korean overview carry the same project status.
+
+- [Installation readiness — 한국어](INSTALL.md)
+- [Verification scope and limitations — 한국어](VERIFICATION.md)
+- [Change history — 한국어](CHANGELOG.md)
+- [Third-party notices — 한국어](THIRD_PARTY_NOTICES.md)
+- [Upstream MIT license](LICENSES/token-monitor-MIT.txt)
+
+Next engineering priorities: equivalent period/attribution/cost results, comparable multi-workload performance tests, and approved packaged-app UI/CPU/power verification before public distribution. Public product naming and final platform support remain subject to release review.

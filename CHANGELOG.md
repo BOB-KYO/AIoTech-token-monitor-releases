@@ -2,6 +2,13 @@
 
 상태: DRAFT. 아래는 로컬 구현·검증 이력이며 공개 릴리스가 아닙니다. 배포 태그나 새 버전 번호는 아직 부여하지 않았습니다.
 
+## 2026-09-24 — 한국어·영어 프로젝트 안내 / English and Korean overview
+
+- Token Monitor 앱 소개를 영어와 한국어로 분리하고 서로 연결했습니다. 현재 상태·검증 한계·설치 준비 여부는 두 언어에서 동일하게 안내합니다.
+- Added linked English and Korean project overviews with matching status, verification limits and installation readiness.
+- 이번 변경은 문서 갱신이며 앱 빌드·기능 변경·새 성능 측정·공개 설치본 배포가 아닙니다.
+- This is a documentation update, not an app build, feature change, new performance measurement or public installer release.
+
 ## 2026-09-23 — 계산 유지보수·격리 측정 마감
 
 - 로컬 데이터 조합의 중복 복사를 줄인 변경은 앞선 단계에서 패키지 검증·백업 후 로컬 적용했습니다. 날짜 캐시 후보는 일부 합성 조건에서 느려져 반영하지 않았습니다.
