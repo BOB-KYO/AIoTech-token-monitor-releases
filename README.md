@@ -12,15 +12,15 @@ Open a compact usage summary from the menu-bar icon, expand into details or the 
 
 ## What is ready—and what is not
 
-| Area | Current evidence |
+| Area | Evidence as of October 12, 2026 |
 | --- | --- |
-| Local Mac app | Earlier maintenance was packaged, backed up and applied locally. Summary/detail navigation and changing values were user-confirmed. This is not a public release. |
-| Later calculation candidate | Source validation completed: 147 related tests and 13 equivalence replay cases passed. This later candidate is not installed. |
-| Collector baseline | 18 isolated queries over 100 synthetic sessions / 9,000 messages checked period totals and deletion behavior. This is not an optimized before/after comparison. |
-| CPU and power | High CPU remains unresolved. Synthetic results vary by workload; installed-app CPU and Energy Impact reductions are not established. |
-| Installation | Public DMG downloads and Homebrew installation are not available. Signing, notarization and clean-machine installation remain release gates. |
+| Local Mac candidate | The collection race fix passed regression checks and was installed locally with the previous app preserved. Reopening produced a new successful collection. The last observation did not prove the collecting indicator returned to idle. |
+| Code checks | Node 24.21.0: 4,483 passed, 0 failed, 1 skipped. Electron 43.4.0 collector/native-watcher checks: 17 passed. These are local candidate results, not this documentation repository's CI or public-release acceptance. |
+| Collection lifecycle | 12 isolated synthetic lifecycle checks passed. Hidden batching, repeated manual refresh, failure recovery and injected resume events were exercised; real OS sleep/lock and live provider/sync/alert checks remain unverified. |
+| CPU and power | One 10-minute observation per app showed core four-process average CPU of 55.84% → 3.45% (100% = one core). Transient children were excluded and workloads differed. This is not a measured whole-app energy reduction. |
+| Installation | No public DMG or Homebrew installation is available. Signing, notarization, clean-machine installation and release acceptance remain open. |
 
-Engineering evidence above is from September 23, 2026 and earlier. This September 24 documentation update does not represent a new app build or new performance measurements.
+**Latest recorded verdict: PASS_WITH_LIMITS.** The corrected candidate was retained after the local check at 06:57 UTC on October 12. The results do not establish its current live state. [Detailed verification](VERIFICATION.md) retains the earlier dated results, the tested candidate identifier and the remaining acceptance criteria. This documentation update does not publish a new app build.
 
 ## Reading the numbers correctly
 
@@ -29,7 +29,7 @@ Engineering evidence above is from September 23, 2026 and earlier. This Septembe
 - Verify provider/agent attribution and deduplication before presenting their records as a combined total.
 - Missing, stale, partial and unavailable data are not zero usage. A minimum remaining percentage needs its provider and time window.
 - Estimated costs are not invoices. Check the currency, exchange-rate basis, period and coverage.
-- Preserve collection and limit-alert timing while optimizing calculation work. Lower synthetic CPU time alone is not proof of lower app power usage.
+- The local candidate batches background usage collection under a separate automatic power-saving policy. Active collection, provider-limit/backoff and alert behavior, and sync freshness are intended to be preserved; live provider/sync/alert verification is still pending. Lower CPU observations alone are not proof of lower app power usage.
 
 ## Project direction
 
@@ -51,4 +51,4 @@ The detailed records below are currently in Korean; this page and the linked Kor
 - [Third-party notices — 한국어](THIRD_PARTY_NOTICES.md)
 - [Upstream MIT license](LICENSES/token-monitor-MIT.txt)
 
-Next engineering priorities: equivalent period/attribution/cost results, comparable multi-workload performance tests, and approved packaged-app UI/CPU/power verification before public distribution. Public product naming and final platform support remain subject to release review.
+Next engineering priorities: confirm the post-reopen idle state, run controlled 10-minute comparisons three times per condition, measure whole-app CPU/wakeups/latency and available energy indicators, and verify real OS transitions and provider/sync/alert behavior before public distribution. Public product naming and final platform support remain subject to release review.
